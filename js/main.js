@@ -39,5 +39,47 @@
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });
+
+    // Section reveal animation
+    (function () {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+            return;
+        }
+
+        var targets = document.querySelectorAll('.blog-item, .container.bg-white, .container.bg-secondary, .contact-form, .carousel');
+
+        if (!targets.length) {
+            return;
+        }
+
+        targets.forEach(function (el, index) {
+            el.classList.add('reveal-on-scroll');
+            el.style.transitionDelay = Math.min(index * 70, 420) + 'ms';
+        });
+
+        if (!('IntersectionObserver' in window)) {
+            targets.forEach(function (el) {
+                el.classList.add('is-visible');
+            });
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        targets.forEach(function (el) {
+            observer.observe(el);
+        });
+    })();
 })(jQuery);
 
