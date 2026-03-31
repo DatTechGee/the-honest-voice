@@ -10019,4 +10019,73 @@ h3 {
   list-style-type: none;
 }
 
+a.image-lightbox {
+  display: block;
+  cursor: zoom-in;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.image-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  z-index: 2000;
+}
+
+.image-lightbox-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.image-lightbox-image {
+  max-width: min(1100px, 100%);
+  max-height: calc(100vh - 110px);
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.image-lightbox-close:hover,
+.image-lightbox-close:focus {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.image-lightbox-caption {
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  max-width: min(900px, 100%);
+}
+
 /*# sourceMappingURL=style.css.map */
